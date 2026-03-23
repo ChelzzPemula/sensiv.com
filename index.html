@@ -1,1435 +1,725 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sensiv | Sensitivitas Premium untuk Free Fire</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #2563EB;
-            --primary-dark: #1D4ED8;
-            --primary-light: #3B82F6;
-            --primary-bg: #EFF6FF;
-            --secondary: #1E293B;
-            --accent: #0EA5E9;
-            --bg-white: #FFFFFF;
-            --bg-light: #F8FAFC;
-            --bg-card: #FFFFFF;
-            --bg-card-hover: #F1F5F9;
-            --text-primary: #1E293B;
-            --text-secondary: #475569;
-            --text-muted: #64748B;
-            --border-color: #E2E8F0;
-            --success: #10B981;
-            --warning: #F59E0B;
-            --gradient-primary: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
-            --gradient-secondary: linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%);
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
-            --border-radius-sm: 8px;
-            --border-radius-md: 12px;
-            --border-radius-lg: 20px;
-            --border-radius-xl: 30px;
-        }
-
-        body {
-            background-color: var(--bg-white);
-            color: var(--text-primary);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.7;
-            overflow-x: hidden;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .section-padding {
-            padding: 100px 0;
-        }
-
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 24px 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .header-scrolled {
-            padding: 16px 0;
-            box-shadow: var(--shadow-lg);
-            background: rgba(255, 255, 255, 0.98);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-primary);
-            border-radius: var(--border-radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
-        }
-
-        .logo-icon i {
-            font-size: 1.2rem;
-            color: white;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        .logo-tagline {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            position: relative;
-            padding: 8px 0;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            left: 0;
-            bottom: 0;
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 1px;
-        }
-
-        nav a:hover::after,
-        nav a.active::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: var(--border-radius-md);
-            background: var(--bg-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .mobile-menu-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 180px 0 120px;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(180deg, var(--bg-white) 0%, var(--primary-bg) 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 650px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            color: var(--secondary);
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            max-width: 580px;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        .hero-highlight {
-            color: var(--primary);
-            font-weight: 700;
-            position: relative;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--gradient-primary);
-            color: white;
-            padding: 18px 40px;
-            border-radius: var(--border-radius-md);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2);
-            border: none;
-            cursor: pointer;
-            letter-spacing: 0.5px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 60px;
-            margin-top: 80px;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: left;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 8px;
-            line-height: 1;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Products Section */
-        .products {
-            padding: 100px 0;
-            background: var(--bg-white);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: var(--secondary);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: var(--gradient-primary);
-            bottom: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 32px auto 0;
-            font-size: 1.1rem;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-        }
-
-        .product-card {
-            background: var(--bg-card);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-12px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary-light);
-            background: var(--bg-card-hover);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            z-index: 2;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: var(--gradient-primary);
-            color: white;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
-        }
-
-        .badge-popular {
-            background: var(--gradient-primary);
-        }
-
-        .badge-pro {
-            background: var(--gradient-secondary);
-        }
-
-        .badge-ultimate {
-            background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
-        }
-
-        .product-header {
-            padding: 40px 32px 32px;
-            text-align: center;
-            background: linear-gradient(180deg, rgba(37, 99, 235, 0.05) 0%, transparent 100%);
-        }
-
-        .product-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(37, 99, 235, 0.1);
-            border-radius: var(--border-radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            border: 2px solid rgba(37, 99, 235, 0.2);
-        }
-
-        .product-icon i {
-            font-size: 2.5rem;
-            color: var(--primary);
-        }
-
-        .product-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-
-        .product-price {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .product-price-old {
-            font-size: 1rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-            font-weight: 500;
-        }
-
-        .product-content {
-            padding: 0 32px 32px;
-        }
-
-        .product-desc {
-            color: var(--text-secondary);
-            margin-bottom: 28px;
-            font-size: 1rem;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        .product-features {
-            list-style: none;
-            margin-bottom: 32px;
-        }
-
-        .product-features li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .product-features li i {
-            color: var(--success);
-            margin-right: 12px;
-            font-size: 0.9rem;
-            width: 20px;
-        }
-
-        .product-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            padding: 16px;
-            text-align: center;
-            background: var(--primary);
-            color: white;
-            border: 2px solid var(--primary);
-            border-radius: var(--border-radius-md);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1rem;
-        }
-
-        .product-button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.2);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 0;
-            background: var(--bg-light);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 32px;
-            margin-top: 60px;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            border-radius: var(--border-radius-lg);
-            padding: 40px 32px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-            text-align: center;
-            box-shadow: var(--shadow-md);
-        }
-
-        .feature-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(37, 99, 235, 0.1);
-            border-radius: var(--border-radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            border: 2px solid rgba(37, 99, 235, 0.2);
-        }
-
-        .feature-icon i {
-            font-size: 1.8rem;
-            color: var(--primary);
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-            font-weight: 700;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* Comparison Section */
-        .comparison {
-            padding: 100px 0;
-            background: var(--bg-white);
-        }
-
-        .comparison-table {
-            overflow-x: auto;
-            border-radius: var(--border-radius-lg);
-            margin-top: 50px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            box-shadow: var(--shadow-lg);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-
-        thead {
-            background: rgba(37, 99, 235, 0.05);
-        }
-
-        th, td {
-            padding: 20px 24px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th:first-child, td:first-child {
-            text-align: left;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        th {
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        td {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        tbody tr:hover {
-            background: rgba(37, 99, 235, 0.02);
-        }
-
-        .fa-check {
-            color: var(--success);
-            font-size: 1.1rem;
-        }
-
-        .fa-times {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        /* WhatsApp Float Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-lg);
-            z-index: 999;
-            transition: all 0.3s;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-float i {
-            font-size: 1.8rem;
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--secondary);
-            padding: 80px 0 40px;
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 50px;
-            margin-bottom: 60px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.25rem;
-            margin-bottom: 24px;
-            color: white;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 3px;
-            background: var(--primary-light);
-            bottom: -8px;
-            left: 0;
-            border-radius: 2px;
-        }
-
-        .footer-column p, .footer-column a {
-            color: #CBD5E1;
-            margin-bottom: 12px;
-            display: block;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 400;
-            font-size: 0.95rem;
-        }
-
-        .footer-column a:hover {
-            color: white;
-            transform: translateX(5px);
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius-md);
-            transition: all 0.3s;
-        }
-
-        .social-icons a:hover {
-            background: var(--primary-light);
-            transform: translateY(-3px);
-        }
-
-        .newsletter-form {
-            margin-top: 20px;
-        }
-
-        .newsletter-form input {
-            width: 100%;
-            padding: 16px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--border-radius-md);
-            color: white;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s;
-        }
-
-        .newsletter-form input:focus {
-            outline: none;
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-        }
-
-        .newsletter-form input::placeholder {
-            color: #94A3B8;
-        }
-
-        .newsletter-form button {
-            width: 100%;
-            padding: 16px;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius-md);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-
-        .newsletter-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.2);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94A3B8;
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
-        .copyright a {
-            color: var(--primary-light);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1100px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: flex;
-            }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 300px;
-                height: 100vh;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(30px);
-                padding: 100px 32px 32px;
-                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
-                transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-                z-index: 1000;
-                border-left: 1px solid var(--border-color);
-            }
-
-            nav.active {
-                right: 0;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .hero {
-                padding: 150px 0 80px;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .hero-stats {
-                justify-content: center;
-                margin-top: 60px;
-                gap: 40px;
-            }
-
-            .section-padding {
-                padding: 80px 0;
-            }
-
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .whatsapp-float {
-                width: 56px;
-                height: 56px;
-                bottom: 20px;
-                right: 20px;
-            }
-
-            .whatsapp-float i {
-                font-size: 1.6rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.9rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .section-title h2 {
-                font-size: 1.6rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-button, .product-button {
-                padding: 16px 32px;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .container {
-                padding: 0 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Sensiv | Optimasi Sensitivitas Premium</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #050b1a;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3b82f6;
+      border-radius: 10px;
+    }
+
+    /* Glassmorphism Effect */
+    .glass {
+      background: rgba(15, 25, 45, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid #3b82f6;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #3b82f6;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover {
+      background: rgba(59, 130, 246, 0.1);
+      transform: translateY(-2px);
+    }
+    .btn-wa {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    }
+    .btn-wa:hover {
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(5, 11, 26, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1rem 5%;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #3b82f6;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8rem 5% 4rem;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      flex: 1;
+      min-width: 300px;
+    }
+    .hero-badge {
+      background: rgba(59, 130, 246, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #3b82f6;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .hero-content h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec489a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-content p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .stat-item h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3b82f6;
+    }
+    .stat-item p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin: 0;
+    }
+    .hero-image {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 30px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Products Section */
+    .products {
+      padding: 6rem 5%;
+      background: linear-gradient(180deg, #050b1a 0%, #0a1122 100%);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .product-card {
+      background: rgba(15, 25, 45, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(59, 130, 246, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 20px 40px -12px rgba(59, 130, 246, 0.2);
+    }
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      padding: 0.25rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .product-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .product-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 1rem 0;
+    }
+    .price span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #94a3b8;
+      text-decoration: line-through;
+      margin-left: 0.5rem;
+    }
+    .features {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    .features li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #cbd5e1;
+    }
+    .features i {
+      color: #3b82f6;
+      font-size: 0.9rem;
+    }
+    .product-card .btn-primary {
+      width: 100%;
+      padding: 12px;
+      margin-top: 1rem;
+    }
+
+    /* New Product Highlight - Sensiv IniV */
+    .product-card.new {
+      border: 2px solid rgba(236, 72, 153, 0.6);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(236, 72, 153, 0.15));
+      box-shadow: 0 0 30px rgba(236, 72, 153, 0.2);
+    }
+    .product-card.new .product-badge {
+      background: linear-gradient(135deg, #ec489a, #8b5cf6);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+      100% { opacity: 0.8; transform: scale(1); }
+    }
+    .price-new {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 1rem 0;
+      color: #ec489a;
+    }
+    .price-new span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #94a3b8;
+      text-decoration: line-through;
+      margin-left: 0.5rem;
+    }
+
+    /* Advantages Section */
+    .advantages {
+      padding: 6rem 5%;
+    }
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .advantage-card {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(15, 25, 45, 0.5);
+      border-radius: 28px;
+      transition: all 0.3s;
+    }
+    .advantage-card:hover {
+      background: rgba(15, 25, 45, 0.8);
+      transform: translateY(-5px);
+    }
+    .advantage-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .advantage-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .advantage-card p {
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    /* Comparison Table */
+    .comparison {
+      padding: 6rem 5%;
+      background: linear-gradient(180deg, #0a1122 0%, #050b1a 100%);
+    }
+    .table-container {
+      overflow-x: auto;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(15, 25, 45, 0.5);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+    }
+    .comparison-table th {
+      background: rgba(59, 130, 246, 0.1);
+      font-weight: 600;
+      color: #3b82f6;
+    }
+    .comparison-table td {
+      color: #cbd5e1;
+    }
+    .comparison-table i.fa-check {
+      color: #10b981;
+    }
+    .comparison-table i.fa-times {
+      color: #ef4444;
+    }
+    .highlight {
+      background: rgba(236, 72, 153, 0.2);
+      color: #ec489a !important;
+      font-weight: 600;
+    }
+
+    /* CTA Section */
+    .cta {
+      padding: 5rem 5%;
+      text-align: center;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      margin: 2rem 5%;
+      border-radius: 48px;
+    }
+    .cta h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .cta p {
+      color: #94a3b8;
+      margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 5%;
+      border-top: 1px solid rgba(59, 130, 246, 0.1);
+      text-align: center;
+      color: #64748b;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(5, 11, 26, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 1.5rem;
+        text-align: center;
+        gap: 1rem;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header id="mainHeader">
-        <div class="container header-container">
-            <a href="#home" class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-crosshairs"></i>
-                </div>
-                <div>
-                    <div class="logo-text">Sensiv</div>
-                    <div class="logo-tagline">Premium Settings</div>
-                </div>
-            </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="#home" class="active">Beranda</a></li>
-                    <li><a href="#products">Produk</a></li>
-                    <li><a href="#features">Fitur</a></li>
-                    <li><a href="#comparison">Perbandingan</a></li>
-                    <li><a href="#contact">Kontak</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1>Optimalisasi Sensitivitas untuk Performa Terbaik</h1>
-                <p class="hero-subtitle">Tingkatkan akurasi dan reaksi dalam Free Fire dengan konfigurasi sensitivitas premium yang telah dioptimalkan oleh para ahli. Rasakan peningkatan performa sejak pertandingan pertama.</p>
-                <a href="#products" class="cta-button">Lihat Paket <i class="fas fa-arrow-right"></i></a>
+<nav class="navbar" id="navbar">
+  <div class="logo">SENSIV</div>
+  <div class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Beranda</a>
+    <a href="#products">Produk</a>
+    <a href="#advantages">Keunggulan</a>
+    <a href="#comparison">Perbandingan</a>
+  </div>
+</nav>
 
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">700+</div>
-                        <div class="stat-label">Pengguna Aktif</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">94%</div>
-                        <div class="stat-label">Kepuasan Pengguna</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Dukungan</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-content" data-aos="fade-right">
+    <div class="hero-badge">
+      <i class="fas fa-bolt"></i> Optimalisasi Sensitivitas Premium
+    </div>
+    <h1>Tingkatkan Performa <span class="gradient-text">Free Fire</span> Anda</h1>
+    <p>Tingkatkan akurasi dan reaksi dalam Free Fire dengan konfigurasi sensitivitas premium yang telah dioptimalkan oleh para ahli. Rasakan peningkatan performa sejak pertandingan pertama.</p>
+    <button class="btn-primary" onclick="scrollToProducts()">Lihat Paket <i class="fas fa-arrow-right"></i></button>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <h3>500+</h3>
+        <p>Pengguna Aktif</p>
+      </div>
+      <div class="stat-item">
+        <h3>87%</h3>
+        <p>Kepuasan</p>
+      </div>
+      <div class="stat-item">
+        <h3>24/7</h3>
+        <p>Dukungan</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image" data-aos="fade-left">
+  <video autoplay muted loop playsinline>
+    <source src="IMG_20260324_030843_262.mp4" type="video/mp4">
+  </video>
+</div>
+</section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Paket Sensitivitas</h2>
-                <p>Pilih paket yang sesuai dengan kebutuhan gameplay Anda</p>
-            </div>
+<!-- Products Section -->
+<section class="products" id="products">
+  <div class="section-header" data-aos="fade-up">
+    <h2>Pilih <span class="gradient-text">Paket Sensitivitas</span></h2>
+    <p>Sesuaikan dengan kebutuhan gameplay Anda untuk performa maksimal</p>
+  </div>
+  <div class="products-grid">
+    <!-- Standard -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="product-icon"><i class="fas fa-gamepad"></i></div>
+      <h3>Sensiv Standard</h3>
+      <div class="price">Rp 26.000 <span>Rp 35.000</span></div>
+      <ul class="features">
+        <li><i class="fas fa-check-circle"></i> Sensitivitas Game 55%</li>
+        <li><i class="fas fa-check-circle"></i> HeadTrick 30%</li>
+        <li><i class="fas fa-check-circle"></i> Aim Stabilization</li>
+        <li><i class="fas fa-check-circle"></i> Basic Tweaks System</li>
+      </ul>
+      <button class="btn-primary" onclick="sendToWhatsApp('Sensiv Standard', 26000)">Beli Sekarang</button>
+    </div>
 
-            <div class="products-grid">
-                <!-- Product 1 -->
-                <div class="product-card fade-in">
-                    <div class="product-badge badge-popular">Populer</div>
-                    <div class="product-header">
-                        <div class="product-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3 class="product-title">Sensiv Standard</h3>
-                        <div class="product-price">Rp 26.000 <span class="product-price-old">Rp 35.000</span></div>
-                    </div>
-                    <div class="product-content">
-                        <p class="product-desc">Sensitivitas optimal untuk pemain casual yang ingin meningkatkan akurasi dengan kenyamanan maksimal.</p>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> Sensitivitas Game 55%</li>
-                            <li><i class="fas fa-check"></i> HeadTrick 30%</li>
-                            <li><i class="fas fa-check"></i> Aim Stabilization</li>
-                            <li><i class="fas fa-check"></i> Basic Tweaks System</li>
-                        </ul>
-                        <button class="product-button" onclick="buyProduct('Sensiv Standard', 'Rp 26.000')">
-                            <i class="fas fa-shopping-cart"></i> Beli Sekarang
-                        </button>
-                    </div>
-                </div>
+    <!-- Pro -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="product-badge">Populer</div>
+      <div class="product-icon"><i class="fas fa-tachometer-alt"></i></div>
+      <h3>Sensiv Pro</h3>
+      <div class="price">Rp 50.000 <span>Rp 60.000</span></div>
+      <ul class="features">
+        <li><i class="fas fa-check-circle"></i> Sensitivitas Game 65%</li>
+        <li><i class="fas fa-check-circle"></i> HeadTrick 50%</li>
+        <li><i class="fas fa-check-circle"></i> Advanced Aim Tuning</li>
+        <li><i class="fas fa-check-circle"></i> Enhanced Tweaks System</li>
+      </ul>
+      <button class="btn-primary" onclick="sendToWhatsApp('Sensiv Pro', 50000)">Beli Sekarang</button>
+    </div>
 
-                <!-- Product 2 -->
-                <div class="product-card fade-in">
-                    <div class="product-badge badge-pro">Pro</div>
-                    <div class="product-header">
-                        <div class="product-icon">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <h3 class="product-title">Sensiv Pro</h3>
-                        <div class="product-price">Rp 50.000 <span class="product-price-old">Rp 60.000</span></div>
-                    </div>
-                    <div class="product-content">
-                        <p class="product-desc">Konfigurasi tingkat lanjut untuk pemain serius yang menginginkan kontrol maksimal dan reaksi instan.</p>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> Sensitivitas Game 65%</li>
-                            <li><i class="fas fa-check"></i> HeadTrick 50%</li>
-                            <li><i class="fas fa-check"></i> Advanced Aim Tuning</li>
-                            <li><i class="fas fa-check"></i> Enhanced Tweaks System</li>
-                        </ul>
-                        <button class="product-button" onclick="buyProduct('Sensiv Pro', 'Rp 50.000')">
-                            <i class="fas fa-shopping-cart"></i> Beli Sekarang
-                        </button>
-                    </div>
-                </div>
+    <!-- NEW PRODUCT: Sensiv IniV - HARGA 1.110.000 -->
+    <div class="product-card new" data-aos="fade-up" data-aos-delay="250">
+      <div class="product-badge">🔥 LIMITED EDITION</div>
+      <div class="product-icon"><i class="fas fa-crown"></i></div>
+      <h3>Sensiv IniV</h3>
+      <div class="price-new">Rp 110.000<span>Rp 150.000</span></div>
+      <ul class="features">
+        <li><i class="fas fa-check-circle"></i> Sensitivitas Game 85%</li>
+        <li><i class="fas fa-check-circle"></i> HeadTrick 70%</li>
+        <li><i class="fas fa-check-circle"></i> Aim Assist</li>
+        <li><i class="fas fa-check-circle"></i> Smart Recoil Prediction</li>
+        <li><i class="fas fa-check-circle"></i> Premium Vibration Control</li>
+        <li><i class="fas fa-check-circle"></i> Exclusive IniV Preset</li>
+        <li><i class="fas fa-check-circle"></i> 1× Updates</li>
+        <li><i class="fas fa-check-circle"></i> High Feature SensiV</li>
+      </ul>
+      <button class="btn-primary btn-wa" onclick="sendToWhatsApp('Sensiv IniV', 110000)">Beli Sekarang <i class="fab fa-whatsapp"></i></button>
+    </div>
 
-                <!-- Product 3 -->
-                <div class="product-card fade-in">
-                    <div class="product-badge badge-ultimate">Ultimate</div>
-                    <div class="product-header">
-                        <div class="product-icon">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <h3 class="product-title">Sensiv Ultimate</h3>
-                        <div class="product-price">Rp 75.000 <span class="product-price-old">Rp 90.000</span></div>
-                    </div>
-                    <div class="product-content">
-                        <p class="product-desc">Setting premium untuk pemain kompetitif dan turnamen dengan konfigurasi kustom lengkap.</p>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> Sensitivitas Game 75%</li>
-                            <li><i class="fas fa-check"></i> HeadTrick 60%</li>
-                            <li><i class="fas fa-check"></i> Advanced Recoil Control</li>
-                            <li><i class="fas fa-check"></i> Full Feature Access</li>
-                        </ul>
-                        <button class="product-button" onclick="buyProduct('Sensiv Ultimate', 'Rp 75.000')">
-                            <i class="fas fa-shopping-cart"></i> Beli Sekarang
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Ultimate -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="product-icon"><i class="fas fa-rocket"></i></div>
+      <h3>Sensiv Ultimate</h3>
+      <div class="price">Rp 75.000 <span>Rp 90.000</span></div>
+      <ul class="features">
+        <li><i class="fas fa-check-circle"></i> Sensitivitas Game 75%</li>
+        <li><i class="fas fa-check-circle"></i> HeadTrick 60%</li>
+        <li><i class="fas fa-check-circle"></i> Advanced Recoil Control</li>
+        <li><i class="fas fa-check-circle"></i> Full Feature Access</li>
+        <li><i class="fas fa-check-circle"></i> Priority Support</li>
+      </ul>
+      <button class="btn-primary" onclick="sendToWhatsApp('Sensiv Ultimate', 75000)">Beli Sekarang</button>
+    </div>
+  </div>
+</section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Keunggulan Kami</h2>
-                <p>Mengapa Sensiv menjadi pilihan utama pemain Free Fire</p>
-            </div>
+<!-- Advantages Section -->
+<section class="advantages" id="advantages">
+  <div class="section-header" data-aos="fade-up">
+    <h2>Keunggulan <span class="gradient-text">Sensiv</span></h2>
+    <p>Mengapa ratusan pemain memilih Sensiv untuk meningkatkan performa mereka</p>
+  </div>
+  <div class="advantages-grid">
+    <div class="advantage-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="advantage-icon"><i class="fas fa-bolt"></i></div>
+      <h4>Respons Instan</h4>
+      <p>Sensitivitas tinggi memberikan reaksi lebih cepat terhadap pergerakan musuh dan peluang headshot.</p>
+    </div>
+    <div class="advantage-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="advantage-icon"><i class="fas fa-bullseye"></i></div>
+      <h4>Akurasi Presisi</h4>
+      <p>Setting yang tepat memberikan kontrol crosshair yang lebih akurat untuk tembakan konsisten.</p>
+    </div>
+    <div class="advantage-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="advantage-icon"><i class="fas fa-sliders-h"></i></div>
+      <h4>Kontrol Lengkap</h4>
+      <p>Mengatur semua aspek getaran dan sensitivitas sesuai preferensi bermain Anda.</p>
+    </div>
+    <div class="advantage-card" data-aos="fade-up" data-aos-delay="400">
+      <div class="advantage-icon"><i class="fas fa-chart-line"></i></div>
+      <h4>Statistik Membaik</h4>
+      <p>Pengguna melaporkan peningkatan signifikan dalam rasio headshot dan kemenangan.</p>
+    </div>
+  </div>
+</section>
 
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Respons Instan</h3>
-                    <p>Sensitivitas tinggi memberikan reaksi lebih cepat terhadap pergerakan musuh dan peluang headshot.</p>
-                </div>
+<!-- Comparison Table -->
+<section class="comparison" id="comparison">
+  <div class="section-header" data-aos="fade-up">
+    <h2>Perbandingan <span class="gradient-text">Paket</span></h2>
+    <p>Pilih paket yang paling sesuai dengan kebutuhan Anda</p>
+  </div>
+  <div class="table-container" data-aos="fade-up">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Fitur</th>
+          <th>Standard</th>
+          <th>Pro</th>
+          <th class="highlight">IniV (NEW)</th>
+          <th>Ultimate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Harga Promo</td><td>Rp 26.000</td><td>Rp 50.000</td><td class="highlight"><strong>Rp 110.000</strong></td><td>Rp 75.000</tr>
+        <tr><td>Sensitivitas Game</td><td>55%</td><td>65%</td><td class="highlight">85%</td><td>70%</tr>
+        <tr><td>HeadTrick</td><td>30%</td><td>50%</td><td class="highlight">70%</td><td>60%</tr>
+        <tr><td>Advanced Aim Tuning</td><td><i class="fas fa-times"></i></td><td><i class="fas fa-check"></i></td><td class="highlight"><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></tr>
+        <tr><td>Recoil Control</td><td>Basic</td><td>Intermediate</td><td class="highlight">Advanced+</td><td>Advanced</tr>
+        <tr><td>Aim Assist</td><td><i class="fas fa-times"></i></td><td><i class="fas fa-times"></i></td><td class="highlight"><i class="fas fa-check"></i></td><td><i class="fas fa-times"></i></tr>
+        <tr><td>1× Updates</td><td><i class="fas fa-times"></i></td><td><i class="fas fa-times"></i></td><td class="highlight"><i class="fas fa-check"></i></td><td><i class="fas fa-times"></i></tr>
+        <tr><td>High Feature SensiV</td><td><i class="fas fa-times"></i></td><td><i class="fas fa-times"></i></td><td class="highlight"><i class="fas fa-check"></i></td><td><i class="fas fa-times"></i></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-crosshairs"></i>
-                    </div>
-                    <h3>Akurasi Presisi</h3>
-                    <p>Setting yang tepat memberikan kontrol crosshair yang lebih akurat untuk tembakan konsisten.</p>
-                </div>
+<!-- CTA Section -->
+<section class="cta" data-aos="zoom-in">
+  <h2>Siap Tingkatkan Performa?</h2>
+  <p>Dapatkan konfigurasi sensitivitas premium sekarang juga!</p>
+  <button class="btn-primary" onclick="scrollToProducts()">Lihat Paket <i class="fas fa-arrow-right"></i></button>
+</section>
 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-sliders-h"></i>
-                    </div>
-                    <h3>Kontrol Lengkap</h3>
-                    <p>Mengatur semua aspek getaran dan sensitivitas sesuai preferensi bermain Anda.</p>
-                </div>
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; 2025 Sensiv. All rights reserved. Optimalisasi sensitivitas untuk performa terbaik.</p>
+</footer>
 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Statistik Membaik</h3>
-                    <p>Pengguna melaporkan peningkatan signifikan dalam rasio headshot dan kemenangan.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 800, once: true });
 
-    <!-- Comparison Section -->
-    <section class="comparison" id="comparison">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Perbandingan Paket</h2>
-                <p>Pilih paket yang paling sesuai dengan kebutuhan Anda</p>
-            </div>
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
 
-            <div class="comparison-table fade-in">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fitur</th>
-                            <th>Standard</th>
-                            <th>Pro</th>
-                            <th>Ultimate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Harga Normal</td>
-                            <td><s>Rp 35.000</s></td>
-                            <td><s>Rp 60.000</s></td>
-                            <td><s>Rp 90.000</s></td>
-                        </tr>
-                        <tr>
-                            <td>Harga Promo</td>
-                            <td><strong>Rp 26.000</strong></td>
-                            <td><strong>Rp 50.000</strong></td>
-                            <td><strong>Rp 75.000</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Sensitivitas Game</td>
-                            <td>55%</td>
-                            <td>65%</td>
-                            <td>75%</td>
-                        </tr>
-                        <tr>
-                            <td>HeadTrick</td>
-                            <td><i class="fas fa-check"></i> 30%</td>
-                            <td><i class="fas fa-check"></i> 50%</td>
-                            <td><i class="fas fa-check"></i> 60%</td>
-                        </tr>
-                        <tr>
-                            <td>Advanced Aim Tuning</td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Full Feature Access</td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Recoil Control</td>
-                            <td>Basic</td>
-                            <td>Intermediate</td>
-                            <td>Advanced</td>
-                        </tr>
-                        <tr>
-                            <td>Vibration Control</td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-times"></i></td>
-                            <td><i class="fas fa-check"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Sensiv</h3>
-                    <p>Penyedia setting sensitivitas premium untuk Free Fire. Memberikan pengalaman gameplay optimal dengan konfigurasi yang telah teruji.</p>
-                    <div class="social-icons">
-                        <a href="https://wa.me/6281332669006" target="_blank" title="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" title="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" title="Telegram">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                        <a href="#" title="Discord">
-                            <i class="fab fa-discord"></i>
-                        </a>
-                    </div>
-                </div>
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+    });
+  });
 
-                <div class="footer-column">
-                    <h3>Produk</h3>
-                    <a href="#products">Sensiv Standard</a>
-                    <a href="#products">Sensiv Pro</a>
-                    <a href="#products">Sensiv Ultimate</a>
-                    <a href="https://wa.me/6281332669006" target="_blank">Custom Configuration</a>
-                </div>
+  // Smooth scroll to products
+  function scrollToProducts() {
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+  }
 
-                <div class="footer-column">
-                    <h3>Dukungan</h3>
-                    <a href="https://wa.me/6281332669006" target="_blank">Panduan Penggunaan</a>
-                    <a href="https://wa.me/6281332669006" target="_blank">Garansi & Support</a>
-                    <a href="https://wa.me/6281332669006" target="_blank">Bantuan Setup</a>
-                    <a href="https://wa.me/6281332669006" target="_blank">FAQ</a>
-                </div>
+  // Generate random invoice number
+  function generateInvoice() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const random = Math.floor(Math.random() * 9000 + 1000);
+    return `SIV-${year}${month}${day}-${random}`;
+  }
 
-                <div class="footer-column">
-                    <h3>Kontak Kami</h3>
-                    <p><i class="fas fa-phone-alt"></i> 0813-3266-9006</p>
-                    <p><i class="fas fa-envelope"></i> sensiv@official.com</p>
-                    <p><i class="fas fa-clock"></i> Support 24/7</p>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Email Anda" id="newsletterEmail">
-                        <button type="button" onclick="subscribeNewsletter()">Berlangganan</button>
-                    </div>
-                </div>
-            </div>
+  // Format Rupiah
+  function formatRupiah(amount) {
+    return 'Rp ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
 
-            <div class="copyright">
-                <p>&copy; 2023 Sensiv. All rights reserved. | <a href="#">Kebijakan Privasi</a> | <a href="#">Syarat Layanan</a></p>
-                <p style="margin-top: 12px; font-size: 0.85rem;">Sensiv tidak berafiliasi dengan Garena Free Fire.</p>
-            </div>
-        </div>
-    </footer>
+  // Send to WhatsApp - langsung ke nomor 081332669006
+  function sendToWhatsApp(productName, price) {
+    const invoice = generateInvoice();
+    const formattedPrice = formatRupiah(price);
+    const now = new Date().toLocaleString('id-ID');
+    
+    // Format pesan WhatsApp
+    const message = `*ORDER SENSIV*%0A%0A` +
+      `Halo Admin SENSIV, saya ingin memesan produk berikut:%0A%0A` +
+      `*Produk:* ${productName}%0A` +
+      `*Harga:* ${formattedPrice}%0A` +
+      `*Invoice:* ${invoice}%0A` +
+      `*Waktu:* ${now}%0A%0A` +
+      `Mohon informasi cara pembayaran. Terima kasih!%0A%0A` +
+      `#Sensiv #OptimalisasiFF`;
+    
+    // Nomor WhatsApp tujuan: 081332669006
+    let waNumber = '081332669006';
+    // Format nomor untuk WhatsApp (hapus non-digit, tambah 62 jika 0)
+    waNumber = waNumber.replace(/\D/g, '');
+    if (waNumber.startsWith('0')) {
+      waNumber = '62' + waNumber.substring(1);
+    }
+    
+    // URL WhatsApp
+    const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${message}`;
+    
+    // Buka WhatsApp di tab baru
+    window.open(waUrl, '_blank');
+  }
 
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/6281332669006?text=Halo,%20saya%20tertarik%20dengan%20produk%20Sensiv" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mainNav.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Buy product function
-        function buyProduct(productName, productPrice) {
-            const phoneNumber = "6281332669006";
-            const message = `Halo, saya ingin membeli ${productName} seharga ${productPrice}. Bisa dijelaskan prosesnya?`;
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            
-            window.open(whatsappURL, '_blank');
-            showNotification(`Membuka WhatsApp untuk ${productName}`);
-        }
-
-        // Newsletter subscription
-        function subscribeNewsletter() {
-            const email = document.getElementById('newsletterEmail').value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (email && emailRegex.test(email)) {
-                const message = `Halo, saya ingin berlangganan newsletter Sensiv dengan email: ${email}`;
-                const encodedMessage = encodeURIComponent(message);
-                const whatsappURL = `https://wa.me/6281332669006?text=${encodedMessage}`;
-                
-                window.open(whatsappURL, '_blank');
-                showNotification('Mengarahkan ke WhatsApp');
-                document.getElementById('newsletterEmail').value = '';
-            } else {
-                showNotification('Harap masukkan email yang valid.', 'error');
-            }
-        }
-
-        // Notification system
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 24px;
-                right: 24px;
-                background: ${type === 'error' ? '#EF4444' : 'var(--primary)'};
-                color: white;
-                padding: 16px 20px;
-                border-radius: var(--border-radius-md);
-                box-shadow: var(--shadow-xl);
-                z-index: 9999;
-                animation: slideIn 0.3s ease-out, fadeOut 0.3s ease-in 2.7s forwards;
-                max-width: 350px;
-                border-left: 4px solid ${type === 'error' ? '#DC2626' : 'var(--primary-dark)'};
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            `;
-
-            notification.innerHTML = `
-                <div style="width: 36px; height: 36px; border-radius: var(--border-radius-md); background: ${type === 'error' ? '#DC2626' : 'var(--primary-dark)'}; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas ${type === 'error' ? 'fa-exclamation' : 'fa-check'}" style="color: white; font-size: 1rem;"></i>
-                </div>
-                <div>
-                    <p style="margin: 0; font-weight: 600; font-size: 0.95rem;">${message}</p>
-                </div>
-            `;
-
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                if (notification.parentNode) {
-                    notification.parentNode.removeChild(notification);
-                }
-            }, 3000);
-        }
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('mainHeader');
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-
-            // Update active nav link
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('nav a');
-
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Add animation CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes fadeOut {
-                from {
-                    opacity: 1;
-                }
-                to {
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Make WhatsApp links open in new tab
-        document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach(link => {
-            if (!link.hasAttribute('target')) {
-                link.setAttribute('target', '_blank');
-                link.setAttribute('rel', 'noopener noreferrer');
-            }
-        });
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add fade-in class to initial elements
-            document.querySelectorAll('.fade-in').forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
-    </script>
+  window.scrollToProducts = scrollToProducts;
+  window.sendToWhatsApp = sendToWhatsApp;
+</script>
 </body>
 </html>
