@@ -186,15 +186,17 @@
       margin: 0;
     }
     .hero-image {
-      flex: 1;
-      min-width: 300px;
-      text-align: center;
-    }
-    .hero-image img {
-      max-width: 100%;
-      border-radius: 30px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    }
+  width: 100%;
+  margin-top: 20px;
+}
+
+.hero-video {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 0 30px rgba(59,130,246,0.5);
+}
 
     /* Products Section */
     .products {
@@ -489,7 +491,7 @@
     </div>
   </div>
   <div class="hero-image" data-aos="fade-left">
-  <video autoplay muted loop playsinline>
+  <video autoplay muted loop playsinline class="hero-video">
     <source src="IMG_20260324_030843_262.mp4" type="video/mp4">
   </video>
 </div>
